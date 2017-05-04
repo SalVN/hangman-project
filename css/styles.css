@@ -22,6 +22,7 @@
     padding: 10px;
     margin-top: 4rem;
     font-family: 'Varela', sans-serif;
+    border-radius: 8px;
 }
 
 .wrong-msg {
@@ -64,6 +65,7 @@
     padding: 10px;
     margin-top: 4rem;
     font-family: 'Varela', sans-serif;
+    border-radius: 8px;
 }
 
 .guessed-correct {
