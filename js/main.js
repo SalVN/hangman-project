@@ -13,11 +13,18 @@ $(document).ready(function (){
     $('.word-to-guess').append($screenWord);
 //    console.log($screenWord);
 
+var $clickCount = 0;
+var $turnCounter = 10;
+var $correctGuesses = 0;
 var $index;
+
+//Lives left counter
+$('.guesses-left').append($turnCounter + " lives left");
+
 //FUNCTION: Guess
 //Prompt a guess
-var $clickCount = 0;
-var $turnCounter = 2;
+
+
     $('.guess-button').click(function (){
         $clickCount++;
 
@@ -38,6 +45,8 @@ var $turnCounter = 2;
             if ($searchable[i]===$guess) {
                 $index.push($guess  + " ");
                     $changed = true;
+                    $correctGuesses++;
+                    console.log($correctGuesses);
             } else {
                 if ($clickCount === 1) {
                     $index.push($screenWord[i]);
@@ -55,7 +64,8 @@ var $turnCounter = 2;
 if ($turnCounter=== 1) {
    return endGame();
 
-       
+} else if ($correctGuesses === $wordSelector.length) {
+       correctWord();
 } else {
 
         if ($changed === true) {
@@ -63,10 +73,12 @@ if ($turnCounter=== 1) {
             $('.wrong-msg').hide();
         } else {
             $turnCounter--
-            console.log($turnCounter);
             $('.wrong-msg').show();
             $('.correct-msg').hide();
-        }
+            //change turnCounter
+            livesLeft();
+            
+}
 
 //        console.log($index);
 
@@ -82,10 +94,63 @@ if ($turnCounter=== 1) {
     
 //FUNCTION end wrong
 function endGame() {
-    $('.guess-button, .wrong-msg').hide();
+    $('.guess-button, .wrong-msg, .guesses-left').hide();
     $('.end-button').show().append('Try again?');
     $('.word-to-guess').html($wordSelector).css('color', 'red');
     $('.end-wrong-text').html("Oh dear! You lost");
+}
+
+//FUNCTION guessed correct
+function correctWord() {
+    $('.guess-button, .wrong-msg, .correct-msg, .guesses-left').hide();
+    $('.end-button').show().append('Try again?');
+    $('.word-to-guess').html($wordSelector).css('color', 'green');
+    $('.guessed-correct-text').html('Congratulations! You guessed correctly');
+}
+
+//FUNCTION lives left colour
+function livesLeft() {
+    switch ($turnCounter) {
+        case 1:
+             $('.guesses-left').html($turnCounter + " life left").css('background-color', 'darkred').css('color', 'white');
+            break;
+        case 2:
+            $('.guesses-left').html($turnCounter + " lives left").css('background-color', 'red').css('color', 'white');
+            break;
+        case 3:
+            $('.guesses-left').html($turnCounter + " lives left").css('background-color', 'palevioletred');
+            break;
+        case 4:
+            $('.guesses-left').html($turnCounter + " lives left").css('background-color', 'lightsalmon');
+            break;
+        case 5:
+            $('.guesses-left').html($turnCounter + " lives left").css('background-color', 'orange');
+            break;
+        case 6:
+            $('.guesses-left').html($turnCounter + " lives left").css('background-color', 'gold');
+            break;
+        case 7:
+            $('.guesses-left').html($turnCounter + " lives left").css('background-color', 'yellow');
+            break;
+        case 8:
+            $('.guesses-left').html($turnCounter + " lives left").css('background-color', 'greenyellow');
+            break;
+        case 9:
+            $('.guesses-left').html($turnCounter + " lives left").css('background-color', 'lawngreen');
+            break;
+
+
+    }
+ 
+ 
+ 
+ 
+ 
+  /*              if ($turnCounter === 1) {
+                $('.guesses-left').html($turnCounter + " life left");
+                 } else {
+                $('.guesses-left').append($turnCounter + " lives left");
+                }*/
 }
 
 
