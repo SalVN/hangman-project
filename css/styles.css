@@ -1,3 +1,13 @@
-h1 {
+.page-title {
     color: blue;
+    text-align: center;
+}
+
+.word-to-guess {
+    text-align: center;
+    font-size: 4rem;
+}
+
+.guess-button-div {
+    text-align: center;
 }
