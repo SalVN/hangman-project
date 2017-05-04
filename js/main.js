@@ -26,13 +26,30 @@ $('.guesses-left').append($turnCounter + " lives left");
 
 
     $('.guess-button').click(function (){
+
+        
+        var $guess = prompt('Guess a Letter');
+        console.log($guess);
+
+        if ($guess === null) {
+            console.log('I\'m null');
+            return $('.guesses-left').html("You didn't guess. <br>Try again").css('background-color', 'palevioletred');
+        } else if ($guess.length > 1) {
+            console.log('wrong length');
+            return $('.guesses-left').html("Sorry! <br>You can only guess one letter at a time").css('background-color', 'palevioletred');
+        } else {
+            console.log('c')
+            $guess.toLowerCase();
+        }
+        
+
+
+//change clickcount
         $clickCount++;
 
-            if ($clickCount > 1) {
+        if ($clickCount > 1) {
                 var $oldResult = $index;
             } 
-        
-        var $guess = prompt('Guess a Letter').toLowerCase();
 
 //Check the word        
         var $searchable = $wordSelector.split('');
@@ -115,10 +132,10 @@ function livesLeft() {
              $('.guesses-left').html($turnCounter + " life left").css('background-color', 'darkred').css('color', 'white');
             break;
         case 2:
-            $('.guesses-left').html($turnCounter + " lives left").css('background-color', 'red').css('color', 'white');
+            $('.guesses-left').html($turnCounter + " lives left").css('background-color', 'firebrick').css('color', 'white');
             break;
         case 3:
-            $('.guesses-left').html($turnCounter + " lives left").css('background-color', 'palevioletred');
+            $('.guesses-left').html($turnCounter + " lives left").css('background-color', 'red');
             break;
         case 4:
             $('.guesses-left').html($turnCounter + " lives left").css('background-color', 'lightsalmon');
