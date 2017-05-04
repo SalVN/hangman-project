@@ -1,6 +1,7 @@
 $(document).ready(function (){
     $('.wrong-msg, .correct-msg, .end-button').hide();
-    var $wordArr = ['blizzard', 'crypt', 'bagpipes', 'fjord', 'beekeeper', 'waltz', 'xylophone', 'quorum', 'puppy', 'zombie', 'yipee', 'sphinx', 'lucky', 'kayak', 'peekaboo', 'rickshaw', 'zodiac', 'haiku', 'galaxy', 'ivory', 'abyss', 'phlegm', 'pneumonia', 'injury'];
+    var $wordArr = ['blizzard', 'crypt', 'bagpipes', 'fjord', 'beekeeper', 'waltz', 'xylophone', 'quorum', 'puppy', 'zombie', 'yipee', 'sphinx', 'lucky', 'kayak', 'peekaboo', 'rickshaw', 'zodiac', 'haiku', 'galaxy', 'ivory', 'abyss', 'phlegm', 'pneumonia', 'injury', 'jockey', 'avenue', 'ivy', 'jigsaw', 'buffalo', 'cobweb', 'awkward', 
+    'jelly', 'gossip', 'microwave', 'quartz', 'twelfth', 'unknown', 'zigzagging', 'subway', 'rhythm'];
 
 
 //generate a random word from the array (use array.length to allow more words to be added later)
@@ -17,6 +18,8 @@ $(document).ready(function (){
     var $turnCounter = 10;
     var $correctGuesses = 0;
     var $index;
+    $guessed = [];
+    $guessedScreen = [];
 
 //Lives left counter
     $('.guesses-left').append($turnCounter + " lives left");
@@ -47,6 +50,7 @@ $(document).ready(function (){
 //Check the word        
         var $searchable = $wordSelector.split('');
        $index =[];
+
        var $changed = false;
 
          for (var i = 0; i < $searchable.length; i++) {
@@ -55,13 +59,16 @@ $(document).ready(function (){
                     $changed = true;
                     $correctGuesses++;
             } else {
+
                     if ($clickCount === 1) {
                         $index.push($screenWord[i]);
+                        
                     } else {
                         $index.push($oldResult[i]);
                     }
             }    
          }
+
 
 //Show a message
 
@@ -72,22 +79,35 @@ $(document).ready(function (){
             correctWord();
         } else {
             if ($changed === true) {
+                $guessed.push($guess);
                 $('.correct-msg').show();
                 $('.wrong-msg').hide();
             } else {
+                $guessed.push($guess);
+                $guessedScreen.push($guess);
                 $turnCounter--
                 $('.wrong-msg').show();
                 $('.correct-msg').hide();
+                guessedLetters();
             //change turnCounter
                 livesLeft();
             }
+
+        console.log($guessed + " " + $guessedScreen);
 //Change the words on the screen
         $('.guess-button').html('Guess Another Letter');
         return $('.word-to-guess').html($index);
         }
     
     });
-    
+
+//FUNCTION display guessed letters on the screen
+    function guessedLetters () {
+        $('.already-guessed').html("You have already guessed:");
+        $('.already-guessed-letters').html($guessedScreen);
+    }
+
+
 //FUNCTION end wrong
     function endGame() {
         $('.guess-button, .wrong-msg, .correct-msg, .guesses-left').hide();

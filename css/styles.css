@@ -2,7 +2,17 @@
     color: blue;
     text-align: center;
     font-family: 'Sigmar One', sans-serif;
-    font-size: 2rem;
+    font-size: 4rem; 
+    margin-top: 2rem;
+}
+
+.page-subheading {
+    color: darkslategrey;
+    text-align: center;
+    font-family: 'Sigmar One', sans-serif;
+    font-size: 2rem; 
+    margin-top: -4rem;
+    margin-bottom: 2rem;
 }
 
 .word-to-guess {
@@ -20,7 +30,7 @@
     font-size: 1rem;
     color: white;
     padding: 10px;
-    margin-top: 4rem;
+    margin-top: 3rem;
     font-family: 'Varela', sans-serif;
     border-radius: 8px;
 }
@@ -30,9 +40,9 @@
     margin-top: 2rem;
     margin-left: 18rem;
     margin-right: 18rem;
-    padding: 5px;
+    padding: 1px;
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-family: 'Varela', sans-serif;
 
 }
@@ -41,10 +51,10 @@
     background-color: palegreen;
     margin-left: 20rem;
     margin-top: 2rem;
-    padding: 5px;
+    padding: 1px;
     margin-right: 20rem;
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-family: 'Varela', sans-serif;
 }
 
@@ -79,7 +89,7 @@
 }
 
 .guesses-left {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-family: 'Varela', sans-serif;
     text-align: center;
     background-color: lightskyblue;
@@ -88,4 +98,16 @@
     margin-top: -1rem;
     margin-bottom: 2rem;
     padding: 10px;
+}
+
+.already-guessed {
+    font-size: 1.25rem;
+    font-family: 'Varela', sans-serif;
+    text-align: center;
+}
+
+.already-guessed-letters {
+    font-size: 2rem;
+    font-family: 'Varela', sans-serif;
+    text-align: center;
 }
