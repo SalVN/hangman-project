@@ -14,7 +14,7 @@ $(document).ready(function (){
 
 
     var $clickCount = 0;
-    var $turnCounter = 2;
+    var $turnCounter = 10;
     var $correctGuesses = 0;
     var $index;
 
