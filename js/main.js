@@ -1,5 +1,5 @@
 $(document).ready(function (){
-    $('.wrong-msg, .correct-msg').hide();
+    $('.wrong-msg, .correct-msg, .end-button').hide();
     var $wordArr = ['blizzard', 'crypt', 'bagpipes', 'fjord', 'beekeeper', 'waltz', 'xylophone', 'quorum', 'puppy', 'zombie', 'yipee', 'sphinx', 'lucky', 'kayak', 'peekaboo', 'rickshaw', 'zodiac', 'haiku', 'galaxy', 'ivory', 'abyss', 'phlegm', 'pneumonia', 'injury'];
  //   console.log($wordArr.length);
 
@@ -8,7 +8,7 @@ $(document).ready(function (){
     console.log($wordSelector);
 
 //print lines on the screen for each letter
-    var $screenWord = $wordSelector.replace(/[a-z+]/g, '__ .' ).split('.');
+    var $screenWord = $wordSelector.replace(/[a-z+]/g, ' _  .' ).split('.');
 //       console.log($screenWord);
     $('.word-to-guess').append($screenWord);
 //    console.log($screenWord);
@@ -17,7 +17,7 @@ var $index;
 //FUNCTION: Guess
 //Prompt a guess
 var $clickCount = 0;
-var $turnCounter = 10;
+var $turnCounter = 2;
     $('.guess-button').click(function (){
         $clickCount++;
 
@@ -53,8 +53,8 @@ var $turnCounter = 10;
 //Show a message
 
 if ($turnCounter=== 1) {
-         $('.guess-button').hide();
-        return $('.word-to-guess').html($index);
+   return endGame();
+
        
 } else {
 
@@ -71,6 +71,8 @@ if ($turnCounter=== 1) {
 //        console.log($index);
 
 //Change the words on the screen
+
+
         $('.guess-button').html('Guess Another Letter');
         return $('.word-to-guess').html($index);
 }
@@ -78,7 +80,13 @@ if ($turnCounter=== 1) {
 
     });
     
-
+//FUNCTION end wrong
+function endGame() {
+    $('.guess-button, .wrong-msg').hide();
+    $('.end-button').show().append('Try again?');
+    $('.word-to-guess').html($wordSelector).css('color', 'red');
+    $('.end-wrong-text').html("Oh dear! You lost");
+}
 
 
 });

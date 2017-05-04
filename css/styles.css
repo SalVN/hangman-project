@@ -1,11 +1,14 @@
 .page-title {
     color: blue;
     text-align: center;
+    font-family: 'Sigmar One', sans-serif;
+    font-size: 2rem;
 }
 
 .word-to-guess {
     text-align: center;
     font-size: 4rem;
+    font-family: 'Viga', sans-serif;
 }
 
 .guess-button-div {
@@ -18,6 +21,7 @@
     color: white;
     padding: 10px;
     margin-top: 4rem;
+    font-family: 'Varela', sans-serif;
 }
 
 .wrong-msg {
@@ -28,6 +32,8 @@
     padding: 5px;
     text-align: center;
     font-size: 1.5rem;
+    font-family: 'Varela', sans-serif;
+
 }
 
 .correct-msg {
@@ -38,4 +44,24 @@
     margin-right: 20rem;
     text-align: center;
     font-size: 1.5rem;
+    font-family: 'Varela', sans-serif;
+}
+
+.end-wrong {
+    text-align: center;
+}
+
+.end-wrong-text {
+    font-size: 1.5rem;
+    font-family: 'Varela', sans-serif;
+    margin-top: 2rem;
+}
+
+.end-button {
+    background-color: green; 
+    font-size: 1rem;
+    color: white;
+    padding: 10px;
+    margin-top: 4rem;
+    font-family: 'Varela', sans-serif;
 }
