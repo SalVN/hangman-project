@@ -3,6 +3,8 @@ $(document).ready(function (){
     var $wordArr = ['blizzard', 'crypt', 'bagpipes', 'fjord', 'beekeeper', 'waltz', 'xylophone', 'quorum', 'puppy', 'zombie', 'yipee', 'sphinx', 'lucky', 'kayak', 'peekaboo', 'rickshaw', 'zodiac', 'haiku', 'galaxy', 'ivory', 'abyss', 'phlegm', 'pneumonia', 'injury', 'jockey', 'avenue', 'ivy', 'jigsaw', 'buffalo', 'cobweb', 'awkward', 
     'jelly', 'gossip', 'microwave', 'quartz', 'twelfth', 'unknown', 'zigzagging', 'subway', 'rhythm'];
 
+    var $correctMessage = ["Well Done!", "Good Guess!", "Awesome!", "Brilliant!", "Amazing!", "Fantastic"];
+    var $wrongMessage = ["Sorry, that is wrong. <br>Guess again!", "Better luck next guess", "Don't give up!<br>This word is tough", "Oops!", "Not that one!<br>Try again!", "Maybe not...<br>Guess again!"]
 
 //generate a random word from the array (use array.length to allow more words to be added later)
     var $wordSelector = $wordArr[Math.floor(Math.random()*$wordArr.length)];
@@ -89,12 +91,14 @@ $(document).ready(function (){
         } else {
             if ($changed === true) {
                 $guessed.push($guess);
+                correctMsgGenerator();
                 $('.correct-msg').show();
                 $('.wrong-msg').hide();
             } else {
                 $guessed.push($guess);
                 $guessedScreen.push($guess + " ");
                 $turnCounter--
+                wrongMsgGenerator();
                 $('.wrong-msg').show();
                 $('.correct-msg').hide();
                 guessedLetters();
@@ -108,6 +112,18 @@ $(document).ready(function (){
         }
     
     });
+
+//FUNCTION generate a message randomly for a correct answer
+    function correctMsgGenerator () {
+        var $chosenCorrectMsg = $correctMessage[Math.floor(Math.random()*$correctMessage.length)];
+        $('.correct-msg').html($chosenCorrectMsg);
+    }
+
+//FUNCTION generate a message randomly for an incorrect answer
+    function wrongMsgGenerator () {
+        var $chosenWrongMsg = $wrongMessage[Math.floor(Math.random()*$wrongMessage.length)];
+        $('.wrong-msg').html($chosenWrongMsg);
+}
 
 //FUNCTION check guess has not been previously guessed
     function checkGuess () {
