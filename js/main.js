@@ -6,7 +6,7 @@ $(document).ready(function (){
 
 //generate a random word from the array (use array.length to allow more words to be added later)
     var $wordSelector = $wordArr[Math.floor(Math.random()*$wordArr.length)];
-    console.log($wordSelector);
+ //   console.log($wordSelector);
 
 //print lines on the screen for each letter
     var $screenWord = $wordSelector.replace(/[a-z+]/g, ' _  .' ).split('.');
@@ -111,8 +111,7 @@ $(document).ready(function (){
 
 //FUNCTION check guess has not been previously guessed
     function checkGuess () {
-        console.log("I'm checking");
-        var isItRepeated = $guessed.includes($guess);
+         var isItRepeated = $guessed.includes($guess);
         if (isItRepeated === true) {
             alreadyGuessed = true;
         } else {
@@ -129,15 +128,15 @@ $(document).ready(function (){
 
 //FUNCTION end wrong
     function endGame() {
-        $('.guess-button, .wrong-msg, .correct-msg, .guesses-left').hide();
+        $('.guess-button, .wrong-msg, .correct-msg, .guesses-left, .already-guessed, .already-guessed-letters').hide();
         $('.end-button').show().append('Try again?');
         $('.word-to-guess').html($wordSelector).css('color', 'red');
-        $('.end-wrong-text').html("Oh dear! You lost");
+        $('.end-wrong-text').html("You lost<br> Better luck next time");
     }
 
 //FUNCTION guessed correct
     function correctWord() {
-        $('.guess-button, .wrong-msg, .correct-msg, .guesses-left').hide();
+        $('.guess-button, .wrong-msg, .correct-msg, .guesses-left, .already-guessed, .already-guessed-letters').hide();
         $('.end-button').show().append('Try again?');
         $('.word-to-guess').html($wordSelector).css('color', 'green');
         $('.guessed-correct-text').html('Congratulations! You guessed correctly');
