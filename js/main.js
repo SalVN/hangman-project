@@ -13,6 +13,7 @@ $(document).ready(function (){
 
     $('.word-to-guess').append($screenWord);
 
+//Global(ish) variables
 
     var $clickCount = 0;
     var $turnCounter = 10;
@@ -20,6 +21,8 @@ $(document).ready(function (){
     var $index;
     $guessed = [];
     $guessedScreen = [];
+    var $guess;
+    var alreadyGuessed;
 
 //Lives left counter
     $('.guesses-left').append($turnCounter + " lives left");
@@ -28,8 +31,7 @@ $(document).ready(function (){
 //Prompt a guess
     $('.guess-button').click(function (){
         
-        var $guess = prompt('Guess a Letter');
-        console.log($guess);
+        $guess = prompt('Guess a Letter');
 
 //Error messages for incorrect input
         if ($guess === null) {
@@ -38,17 +40,24 @@ $(document).ready(function (){
             return $('.guesses-left').html("Sorry! <br>You can only guess one letter at a time").css('background-color', 'palevioletred');
         } else {
             $guess.toLowerCase();
+            checkGuess();
         }
-        
+
+//Return if checkGuess = true for a repeated word
+        if (alreadyGuessed === true) {
+            $('.wrong-msg, .correct-msg').hide();
+            return $('.guesses-left').html("You have already guessed " + $guess + ". <br>Try Again!").css('background-color', 'palevioletred');
+        }             
 //change clickcount
         $clickCount++;
 
+//save the previous index with previously guessed letters
         if ($clickCount > 1) {
                 var $oldResult = $index;
             } 
 
-//Check the word        
-        var $searchable = $wordSelector.split('');
+//Check the word for the guessed letter        
+       var $searchable = $wordSelector.split('');
        $index =[];
 
        var $changed = false;
@@ -70,7 +79,7 @@ $(document).ready(function (){
          }
 
 
-//Show a message
+//Show a correct/incorrect message
 
         if ($turnCounter=== 1 && $changed !== true) {
             return endGame();
@@ -84,7 +93,7 @@ $(document).ready(function (){
                 $('.wrong-msg').hide();
             } else {
                 $guessed.push($guess);
-                $guessedScreen.push($guess);
+                $guessedScreen.push($guess + " ");
                 $turnCounter--
                 $('.wrong-msg').show();
                 $('.correct-msg').hide();
@@ -93,13 +102,23 @@ $(document).ready(function (){
                 livesLeft();
             }
 
-        console.log($guessed + " " + $guessedScreen);
 //Change the words on the screen
         $('.guess-button').html('Guess Another Letter');
         return $('.word-to-guess').html($index);
         }
     
     });
+
+//FUNCTION check guess has not been previously guessed
+    function checkGuess () {
+        console.log("I'm checking");
+        var isItRepeated = $guessed.includes($guess);
+        if (isItRepeated === true) {
+            alreadyGuessed = true;
+        } else {
+            alreadyGuessed = false;
+        }
+    }
 
 //FUNCTION display guessed letters on the screen
     function guessedLetters () {
