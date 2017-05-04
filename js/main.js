@@ -9,28 +9,28 @@ $(document).ready(function (){
 
 //print lines on the screen for each letter
     var $screenWord = $wordSelector.replace(/[a-z+]/g, '__ .' ).split('.');
-       console.log($screenWord);
+//       console.log($screenWord);
     $('.word-to-guess').append($screenWord);
-    console.log($screenWord);
+//    console.log($screenWord);
 
 var $index;
-//prompt a guess function
+//FUNCTION: Guess
+//Prompt a guess
 var $clickCount = 0;
+var $turnCounter = 10;
     $('.guess-button').click(function (){
         $clickCount++;
-        console.log($clickCount);
+
             if ($clickCount > 1) {
                 var $oldResult = $index;
-                console.log($oldResult);
             } 
         
         var $guess = prompt('Guess a Letter').toLowerCase();
-        
-        //console.log($guess);
-        
+
+//Check the word        
         var $searchable = $wordSelector.split('');
         //console.log($searchable);
-        
+       
         $index =[];
         
         var $changed = false;
@@ -48,19 +48,34 @@ var $clickCount = 0;
                 }
             }    
          }
-         console.log($changed);
+//         console.log($changed);
+
+//Show a message
+
+if ($turnCounter=== 1) {
+         $('.guess-button').hide();
+        return $('.word-to-guess').html($index);
+       
+} else {
+
         if ($changed === true) {
             $('.correct-msg').show();
             $('.wrong-msg').hide();
         } else {
+            $turnCounter--
+            console.log($turnCounter);
             $('.wrong-msg').show();
             $('.correct-msg').hide();
         }
 
-        console.log($index);
+//        console.log($index);
+
+//Change the words on the screen
         $('.guess-button').html('Guess Another Letter');
         return $('.word-to-guess').html($index);
-        
+}
+
+
     });
     
 
