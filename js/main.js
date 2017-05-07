@@ -35,7 +35,6 @@ $(document).ready(function (){
         
         $guess = prompt('Guess a Letter');
 
-
 //Error messages for incorrect input
         if ($guess === null || $guess.length === 0 || $guess === ' ') {
             return $('.guesses-left').html("You didn't guess. <br>Try again").css('background-color', 'palevioletred');
@@ -43,7 +42,8 @@ $(document).ready(function (){
             return $('.guesses-left').html("Sorry! <br>You can only guess one letter at a time").css('background-color', 'palevioletred');
         } else {
             console.log("my guess" + $guess.length);
-            $guess.toLowerCase();
+            $guess = $guess.toLowerCase();
+            console.log($guess);
             checkGuess();
         }
 
